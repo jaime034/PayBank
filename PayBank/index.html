@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayBank</title>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PayBank - Banco Digital</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+body{
+    background: #f4f7fc;
+}
+
+.hero{
+    background: linear-gradient(135deg,#0d6efd,#6610f2);
+    color:white;
+    border-radius:0 0 40px 40px;
+}
+
+.balance-card{
+    margin-top:-60px;
+}
+
+.card{
+    border:none;
+    border-radius:20px;
+}
+
+.stat-card{
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+}
+
+.table thead{
+    background:#0d6efd;
+    color:white;
+}
+
+.btn-primary{
+    border-radius:12px;
+}
+
+.form-control{
+    border-radius:12px;
+}
+
+footer{
+    margin-top:50px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="#">
+            <i class="bi bi-bank"></i> PayBank
+        </a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Transferências</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Extrato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero py-5 mb-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">
+            Bem-vindo ao PayBank
+        </h1>
+
+        <p class="lead">
+            Seu banco digital inteligente para gerenciar transferências.
+        </p>
+    </div>
+</section>
+
+<div class="container">
+
+    <!-- SALDO -->
+    <div class="row balance-card mb-4">
+        <div class="col-lg-12">
+            <div class="card shadow-lg bg-white">
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-muted">
+                                Saldo Disponível
+                            </small>
+
+                            <h1 class="fw-bold text-success">
+                                R$ 25.000,00
+                            </h1>
+                        </div>
+
+                        <div>
+                            <i class="bi bi-wallet2 text-primary"
+                               style="font-size:60px;"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESTATÍSTICAS -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-arrow-left-right text-primary fs-1"></i>
+                    <h3 id="totalTransferencias">0</h3>
+                    <p class="text-muted">Transferências</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-currency-dollar text-success fs-1"></i>
+                    <h3 id="totalValor">R$ 0,00</h3>
+                    <p class="text-muted">Valor Movimentado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-check text-warning fs-1"></i>
+                    <h3 id="clientes">1</h3>
+                    <p class="text-muted">Cliente Ativo</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div class="card shadow-lg mb-5">
+        <div class="card-header bg-primary text-white p-3">
+            <h4 class="mb-0">
+                <i class="bi bi-send"></i>
+                Nova Transferência
+            </h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form id="transferForm">
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            Destinatário
+                        </label>
+
+                        <input
+                            type="text"
+                            id="destinatario"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            Banco
+                        </label>
+
+                        <input
+                            type="text"
+                            id="banco"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            Valor
+                        </label>
+
+                        <input
+                            type="number"
+                            id="valor"
+                            class="form-control"
+                            required>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-primary btn-lg">
+                    <i class="bi bi-check-circle"></i>
+                    Registrar Transferência
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- HISTÓRICO -->
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-dark text-white">
+            <h4>
+                <i class="bi bi-clock-history"></i>
+                Histórico de Transferências
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>Destinatário</th>
+                            <th>Banco</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaTransferencias"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <p class="mb-0">
+        © 2026 PayBank - Projeto Escolar de Banco Digital
+    </p>
+</footer>
+
+<script>
+
+const tabela = document.getElementById("tabelaTransferencias");
+const form = document.getElementById("transferForm");
+
+function atualizarDashboard(){
+
+    const dados =
+    JSON.parse(localStorage.getItem("transferencias")) || [];
+
+    tabela.innerHTML = "";
+
+    let total = 0;
+
+    dados.forEach(item=>{
+
+        total += Number(item.valor);
+
+        tabela.innerHTML += `
+        <tr>
+            <td>${item.destinatario}</td>
+            <td>${item.banco}</td>
+            <td class="text-success fw-bold">
+                R$ ${Number(item.valor).toFixed(2)}
+            </td>
+            <td>${item.data}</td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("totalTransferencias")
+    .innerText = dados.length;
+
+    document.getElementById("totalValor")
+    .innerText = "R$ " + total.toLocaleString("pt-BR");
+}
+
+form.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const transferencia = {
+
+        destinatario:
+        document.getElementById("destinatario").value,
+
+        banco:
+        document.getElementById("banco").value,
+
+        valor:
+        document.getElementById("valor").value,
+
+        data:
+        new Date().toLocaleString("pt-BR")
+
+    };
+
+    const dados =
+    JSON.parse(localStorage.getItem("transferencias")) || [];
+
+    dados.push(transferencia);
+
+    localStorage.setItem(
+        "transferencias",
+        JSON.stringify(dados)
+    );
+
+    form.reset();
+
+    atualizarDashboard();
+});
+
+atualizarDashboard();
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</html>
